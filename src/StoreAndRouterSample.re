@@ -2,10 +2,7 @@ module Store = {
   type action =
     | Increase
     | Decrease
-    | Logout
     | SetUsername(string);
-
-
   type state = {
     count: int,
     username: string,
@@ -19,9 +16,6 @@ module Store = {
     | Increase => {...state, count: state.count + 1}
     | Decrease => {...state, count: state.count - 1}
     | SetUsername(username) => {...state, username}
-    | Logout =>{
-        ReasonReactRouter.push("/");
-         {...state, username:""}}
     };
 
   [@react.component]
@@ -73,13 +67,6 @@ module Screen = {
       <button onClick={_event => store.dispatch(Decrease)}>
         "Decrease"->React.string
       </button>
-    <button
-        onClick={_ => {
-          store.dispatch(Logout);
-          ReasonReactRouter.push("#loggedout");
-        }}>
-        "Logout"->React.string
-      </button>
     </div>;
   };
 };
@@ -91,7 +78,7 @@ module Router = {
   type action =
     | SwitchRoute(route);
   type routerState = {activeRoute: route};
-  let reducer = (_state: routerState, action: action) =>
+  let reducer = (state: routerState, action: action) =>
     switch (action) {
     | SwitchRoute(route) => {activeRoute: route}
     };
@@ -105,7 +92,6 @@ module Router = {
       () => {
         switch (url.hash) {
         | "loggedin" => dispatch(SwitchRoute(Screen))
-        | "loggedout" => dispatch(SwitchRoute(Login))
         | _ =>
           Js.log("Could not find route");
           Js.log(url);
@@ -128,5 +114,5 @@ module Router = {
   };
 };
 
-// [@react.component]
-// let default = () => <Router />;
+[@react.component]
+let default = () => <Router />;

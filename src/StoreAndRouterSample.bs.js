@@ -5,30 +5,23 @@ var React = require("react");
 var ReasonReactRouter = require("reason-react/src/ReasonReactRouter.bs.js");
 
 function reducer(state, action) {
-  if (typeof action !== "number") {
+  if (typeof action === "number") {
+    if (action !== 0) {
+      return {
+              count: state.count - 1 | 0,
+              username: state.username
+            };
+    } else {
+      return {
+              count: state.count + 1 | 0,
+              username: state.username
+            };
+    }
+  } else {
     return {
             count: state.count,
             username: action._0
           };
-  }
-  switch (action) {
-    case /* Increase */0 :
-        return {
-                count: state.count + 1 | 0,
-                username: state.username
-              };
-    case /* Decrease */1 :
-        return {
-                count: state.count - 1 | 0,
-                username: state.username
-              };
-    case /* Logout */2 :
-        ReasonReactRouter.push("/");
-        return {
-                count: state.count,
-                username: ""
-              };
-    
   }
 }
 
@@ -86,19 +79,14 @@ function StoreAndRouterSample$Screen(Props) {
                   onClick: (function (_event) {
                       return Curry._1(store.dispatch, /* Decrease */1);
                     })
-                }, "Decrease"), React.createElement("button", {
-                  onClick: (function (param) {
-                      Curry._1(store.dispatch, /* Logout */2);
-                      return ReasonReactRouter.push("#loggedout");
-                    })
-                }, "Logout"));
+                }, "Decrease"));
 }
 
 var $$Screen = {
   make: StoreAndRouterSample$Screen
 };
 
-function reducer$1(_state, action) {
+function reducer$1(state, action) {
   return {
           activeRoute: action._0
         };
@@ -113,20 +101,13 @@ function StoreAndRouterSample$Router(Props) {
   var url = ReasonReactRouter.useUrl(undefined, undefined);
   React.useEffect((function () {
           var match = url.hash;
-          switch (match) {
-            case "loggedin" :
-                Curry._1(dispatch, /* SwitchRoute */{
-                      _0: /* Screen */1
-                    });
-                break;
-            case "loggedout" :
-                Curry._1(dispatch, /* SwitchRoute */{
-                      _0: /* Login */0
-                    });
-                break;
-            default:
-              console.log("Could not find route");
-              console.log(url);
+          if (match === "loggedin") {
+            Curry._1(dispatch, /* SwitchRoute */{
+                  _0: /* Screen */1
+                });
+          } else {
+            console.log("Could not find route");
+            console.log(url);
           }
           
         }), [url]);
@@ -147,8 +128,17 @@ var Router = {
   make: StoreAndRouterSample$Router
 };
 
+function StoreAndRouterSample$default(Props) {
+  return React.createElement(StoreAndRouterSample$Router, {});
+}
+
+var $$default = StoreAndRouterSample$default;
+
 exports.Store = Store;
 exports.Login = Login;
 exports.$$Screen = $$Screen;
 exports.Router = Router;
+exports.$$default = $$default;
+exports.default = $$default;
+exports.__esModule = true;
 /* react Not a pure module */

@@ -46,6 +46,6 @@ ReactDOMRe.render(
 );
 
 ReactDOMRe.render(
-  <StoreAndRouterSample.Router />,
+  <LoginLogoutFunctor.Router />,
   makeContainer("Reason Using JS Using Reason"),
 );
