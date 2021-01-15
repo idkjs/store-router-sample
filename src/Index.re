@@ -47,5 +47,5 @@ ReactDOMRe.render(
 
 ReactDOMRe.render(
   <LoginLogoutFunctor.Router />,
-  makeContainer("Reason Using JS Using Reason"),
+  makeContainer("LoginLogoutFunctor"),
 );

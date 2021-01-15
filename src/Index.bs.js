@@ -5,7 +5,7 @@ var ReactDom = require("react-dom");
 var ExampleStyles$StoreRouterSample = require("./ExampleStyles.bs.js");
 var BlinkingGreeting$StoreRouterSample = require("./BlinkingGreeting/BlinkingGreeting.bs.js");
 var FetchedDogPictures$StoreRouterSample = require("./FetchedDogPictures/FetchedDogPictures.bs.js");
-var StoreAndRouterSample$StoreRouterSample = require("./StoreAndRouterSample.bs.js");
+var LoginLogoutFunctor$StoreRouterSample = require("./LoginLogoutFunctor.bs.js");
 var ReducerFromReactJSDocs$StoreRouterSample = require("./ReducerFromReactJSDocs/ReducerFromReactJSDocs.bs.js");
 
 var style = document.createElement("style");
@@ -36,7 +36,7 @@ ReactDom.render(React.createElement(ReducerFromReactJSDocs$StoreRouterSample.mak
 
 ReactDom.render(React.createElement(FetchedDogPictures$StoreRouterSample.make, {}), makeContainer("Fetched Dog Pictures"));
 
-ReactDom.render(React.createElement(StoreAndRouterSample$StoreRouterSample.Router.make, {}), makeContainer("Reason Using JS Using Reason"));
+ReactDom.render(React.createElement(LoginLogoutFunctor$StoreRouterSample.Router.make, {}), makeContainer("Reason Using JS Using Reason"));
 
 exports.style = style;
 exports.makeContainer = makeContainer;
