@@ -7,3 +7,4 @@ npm-debug.log
 /bundleOutput/.bs.js
 *.bs.js
 _esy/default
+_esy/
